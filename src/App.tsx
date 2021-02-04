@@ -9,7 +9,8 @@ const todos: Array<Todo> = [
 const App = () => {
   return (
     <>
-    <TodoListItem todo={todos[0]} />
+      <TodoListItem todo={todos[0]} />
+      <TodoListItem todo={todos[1]} />
     </>
   );
 }
