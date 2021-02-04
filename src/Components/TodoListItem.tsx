@@ -1,19 +1,18 @@
 import React from "react";
+import "./TodoListItem.css";
 
 interface TodoListProps {
-  todo: {
-    text: string;
-    complete: boolean;
-  };
+  todo: Todo;
 }
 
-export const TodoListItem: React.FC<TodoListProps> = ({ todo }) => {
+export const TodoListItem = ({ todo }: TodoListProps) => {
   return (
     <li>
       <label
-        style={{ textDecoration: todo.complete ? "line-through" : undefined }}
+        className={todo.complete ? "complete" : undefined }
       >
-        <input type="checkbox" checked={todo.complete} /> {todo.text}
+        <input type="checkbox" checked={todo.complete} /> 
+        {todo.text}
       </label>
     </li>
   );
