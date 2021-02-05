@@ -1,16 +1,38 @@
-import React from 'react';
-import { TodoListItem } from './Components/TodoListItem';
+import React, { useState } from "react";
+import TodoList from "./Components/todoList";
+import AddTodoForm from "./Components/addTodoForm";
 
-const todos: Array<Todo> = [
-  { text: "Walk the dog", complete: false },
+const initialTodos: Array<Todo> = [
+  { text: "Walk the dog", complete: true },
   { text: "Grocery store run", complete: false }
 ];
 
 const App = () => {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const toggleTodo = ( selectedTodo: Todo) => {
+    const newTodos = todos.map(todo => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  }
+
+  const addTodo: AddTodo = newTodo => {
+    if (newTodo.trim() !== "") {
+      setTodos([...todos, {text: newTodo, complete: false}]);
+    }
+  }
+
   return (
     <>
-      <TodoListItem todo={todos[0]} />
-      <TodoListItem todo={todos[1]} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <AddTodoForm addTodo={addTodo} />
     </>
   );
 }

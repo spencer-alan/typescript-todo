@@ -3,17 +3,20 @@ import "./TodoListItem.css";
 
 interface TodoListProps {
   todo: Todo;
+  toggleTodo: ToggleTodo;
 }
 
-export const TodoListItem = ({ todo }: TodoListProps) => {
+const TodoListItem = ({ todo, toggleTodo }: TodoListProps) => {
   return (
     <li>
       <label
         className={todo.complete ? "complete" : undefined }
       >
-        <input type="checkbox" checked={todo.complete} /> 
+        <input type="checkbox" checked={todo.complete} onChange={() => toggleTodo(todo)} /> 
         {todo.text}
       </label>
     </li>
   );
 };
+
+export default TodoListItem;
